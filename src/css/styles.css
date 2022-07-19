@@ -1,0 +1,39 @@
+html { 
+    background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/High_Court_of_Australia_building%2C_Canberra_03.jpg/1200px-High_Court_of_Australia_building%2C_Canberra_03.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+   html, body {margin: 0; height: 100%;}
+
+#Error404 {
+margin-top: 200px;
+font-size: 50px;
+color: #1A1A1A;
+text-align: center;
+background-color: white;
+padding: 20px;
+opacity: 0.7;
+}
+
+#Error404 a {
+    color: #1A1A1A;
+    text-decoration: underline;
+}
+
+#messages {
+    background-color: white;
+    height: auto;
+    width: 600px;
+    margin: auto;
+    margin-top: 60px;
+    margin-bottom: 20px;
+    text-align: center;
+    padding: 20px;
+    opacity: 0.9;
+    color: #1A1A1A;
+    font-size: 20px;
+    border-radius: 15px;
+}
