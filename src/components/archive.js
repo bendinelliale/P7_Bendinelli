@@ -13,7 +13,7 @@ function DataFetching() {
 	useEffect(() => {
 		//Get data for messages
 		axios
-			.get('http://localhost:3000/api/posts')
+			.get('http://localhost:3001/api/posts')
 			.then(res => {
 				setPosts(res.data)
 			})

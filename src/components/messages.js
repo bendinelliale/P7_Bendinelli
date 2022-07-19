@@ -8,7 +8,7 @@ function DataFetching() {
 
 	  // Update max ID view
 	  function updateView() {
-		axios('http://localhost:3000/api/posts/')
+		axios('http://localhost:3001/api/posts/')
 		.then(res => {
 			let array = res.data;
 			var res = Math.max.apply(Math,array.map(function(o){return o.id;}))
@@ -18,7 +18,7 @@ function DataFetching() {
 		const userId = sessionStorage.getItem('UserId');
 		const maxId = sessionStorage.getItem('maxId'); 
 		axios
-		  .post(`http://localhost:3000/api/users/updateView/${userId}`, {
+		  .post(`http://localhost:3001/api/users/updateView/${userId}`, {
 			postView: maxId,
 		  })
 		  .then((response) => {	  });
@@ -29,7 +29,7 @@ function DataFetching() {
 		// Get ID view
 		const userId = sessionStorage.getItem('UserId'); 
 		axios
-		.get(`http://localhost:3000/api/users/${userId}`)
+		.get(`http://localhost:3001/api/users/${userId}`)
 		.then(res => {
 			lastMaxId = res.data.postView;
 		})
@@ -38,7 +38,7 @@ function DataFetching() {
 		})
 
 		// Get data for messages
-		axios('http://localhost:3000/api/posts')
+		axios('http://localhost:3001/api/posts')
 			.then(res => {
 				const messages = res.data;
 				const getLastestPost = (lastMaxId, array) => {

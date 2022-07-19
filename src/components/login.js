@@ -20,7 +20,7 @@ function Login(){
 			}else if(!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password)){
 			      setPasswordWarning('Please provide a password that contains minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character')
 				}else{		
-		axios.post("http://localhost:3000/api/users/login",data)
+		axios.post("http://localhost:3001/api/users/login",data)
             .then(
                 (res)=>{
                     sessionStorage.setItem("token", res.data.token)

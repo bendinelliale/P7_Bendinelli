@@ -30,7 +30,7 @@ function PopUpbox() {
 
 		const access_token = sessionStorage.getItem('token');
 		
-		axios.post("http://localhost:3000/api/posts", formData,
+		axios.post("http://localhost:3001/api/posts", formData,
 		{
 			headers: {
 			  'Authorization': `Basic ${access_token}`

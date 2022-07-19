@@ -17,7 +17,7 @@ function logout(){
 
 const deleteAccount=()=>{
   const userId = sessionStorage.getItem('UserId'); 
-  axios.delete(`http://localhost:3000/api/users/${userId}`, {
+  axios.delete(`http://localhost:3001/api/users/${userId}`, {
     headers: {
       'Authorization': `token ${access_token}`
     },
