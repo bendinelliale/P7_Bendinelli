@@ -24,6 +24,7 @@ const Register = () => {
             if (error.response) {
                 setMsg(error.response.data.msg);
             }
+            
         }
     }
  

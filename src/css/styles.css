@@ -1,10 +1,10 @@
-html { 
+/* html { 
     background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/High_Court_of_Australia_building%2C_Canberra_03.jpg/1200px-High_Court_of_Australia_building%2C_Canberra_03.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-  }
+  } */
 
    html, body {margin: 0; height: 100%;}
 
