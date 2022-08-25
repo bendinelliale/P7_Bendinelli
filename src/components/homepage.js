@@ -14,8 +14,10 @@ function Homepage(){
 
 
     <div>
+        <div className="page_container">
         <Header />
         <Messages />
+        </div>
     </div>
 
     )

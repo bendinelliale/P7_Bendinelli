@@ -28,6 +28,7 @@ function DataFetching() {
 
 		// Get ID view
 		const userId = sessionStorage.getItem('UserId'); 
+		const token = sessionStorage.getItem('token'); 
 		axios
 		.get(`http://localhost:3001/api/users/${userId}`)
 		.then(res => {
@@ -38,7 +39,11 @@ function DataFetching() {
 		})
 
 		// Get data for messages
-		axios('http://localhost:3001/api/posts')
+		axios('http://localhost:3001/api/posts',{
+			headers:{
+				'Authorization' : `Bearer `+token
+			}
+		})
 			.then(res => {
 				const messages = res.data;
 				const getLastestPost = (lastMaxId, array) => {
@@ -51,7 +56,7 @@ function DataFetching() {
 					return arr;
 				}
 				let newData = getLastestPost(lastMaxId, messages);
-				setPosts(newData);
+				setPosts(messages);
 				console.log(lastMaxId);
 			})
 			.catch(err => {
@@ -63,16 +68,18 @@ function DataFetching() {
 	return (
 		<span>
 			<div id="messages">
-				<p>Hi {helloUser}, thank you for logging in :-)</p><br></br>
+				<p>Hi {helloUser}, thank you for logging in !!</p><br></br>
 				<p><a href="/newpost"><button className="button is-success">New message</button></a>  <a href="/archive"><button className="button is-success">Check archive</button></a></p>
 			</div>
 
 				{posts.map(post => (
-					<div id="messages">
+					<div id="messages" key={post.id}>
 						<p key={post.id}>Author: {post.UserName}</p>
 						<p key={post.title}>Title: {post.title}</p>
 						<p key={post.content}>{post.content}</p>
 						<img src={post.imageUrl} max-width='300' alt="" />
+						<button id="delete">Delete</button>
+						<button id="comment">Comments</button>
 					</div>
 				))}
 			<div id="messages">

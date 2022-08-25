@@ -63,13 +63,13 @@ function PopUpbox() {
 								<textarea name="content" placeholder="content" onChange={event => setContent(event.target.value)}></textarea>
 							</div>
 							<div className="col-lg-12">
-								<input type="file" name="imageuRL" placeholder="imageuRL" onChange={event => setImageUrl(event.target.files[0])}
+								<input className="file" type="file" name="imageuRL" placeholder="imageuRL" onChange={event => setImageUrl(event.target.files[0])}
 									accept="image/png, image/jpeg, image/jpg, image/webp">
 								</input>
 							</div>
 							<div className="col-lg-12">
 								<ul>
-									<li><button className="active" type="submit" value="post">Post</button></li>
+									<button className="active" type="submit" value="post">Post</button>
 								</ul>
 							</div>
 						</div>
