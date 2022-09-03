@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from 'react'
+import axios from 'axios'
 import CommentForm from "./CommentForm";
 import Comment from "./Comment";
 import {
@@ -8,11 +9,11 @@ import {
   deleteComment as deleteCommentApi,
 } from "../api";
 
-const Comments = ({ commentsUrl, currentUserId }) => {
+const Comments = ({ commentsUrl, currentUserId , postId }) => {
   const [backendComments, setBackendComments] = useState([]);
   const [activeComment, setActiveComment] = useState(null);
   const rootComments = backendComments.filter(
-    (backendComment) => backendComment.parentId === null
+    (backendComment) => backendComment.postId === null
   );
   const getReplies = (commentId) =>
     backendComments
@@ -52,18 +53,18 @@ const Comments = ({ commentsUrl, currentUserId }) => {
   };
 
   useEffect(() => {
-    getCommentsApi().then((data) => {
+    getCommentsApi(postId).then((data) => {
+      console.log('comments',data)
       setBackendComments(data);
     });
   }, []);
 
   return (
     <div className="comments">
-      <h3 className="comments-title">Comments</h3>
-      <div className="comment-form-title">Write comment</div>
+      <div className="comment-form-title">Comment here</div>
       <CommentForm submitLabel="Write" handleSubmit={addComment} />
       <div className="comments-container">
-        {rootComments.map((rootComment) => (
+        {backendComments.map((rootComment) => (
           <Comment
             key={rootComment.id}
             comment={rootComment}

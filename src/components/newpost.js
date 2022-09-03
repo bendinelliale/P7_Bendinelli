@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link  , useNavigate} from 'react-router-dom'
 import axios from 'axios'
+import Homepage from './homepage';
+//import { router } from '../../../Backend/app';
 const helloUser = sessionStorage.getItem('UserName');
 
 function PopUpbox() {
 	const [title, setTitle] = useState('');
 	const [content, setContent] = useState('');
 	const [imageUrl, setImageUrl] = useState('')
+	const navigate  =  useNavigate ()
 
 	const createPost = (e) => {
 		e.preventDefault();
@@ -38,7 +41,8 @@ function PopUpbox() {
 		  })
 			.then(
 				(res) => {
-					console.log('post created');
+					alert('post created');
+					navigate('/')
 
 				})
 			.catch((err) => {
@@ -47,6 +51,7 @@ function PopUpbox() {
 	}
 
 	return (
+		
         <div id="messages">
 
 		<div className="post-popup job_post">

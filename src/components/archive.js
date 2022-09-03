@@ -3,17 +3,18 @@ import axios from 'axios'
 const helloUser = sessionStorage.getItem('UserName');
 
 
-
-
 function DataFetching() {
 
-	
 	const [posts, setPosts] = useState ([])
 
 	useEffect(() => {
 		//Get data for messages
-		axios
-			.get('http://localhost:3001/api/posts')
+		const access_token = sessionStorage.getItem('token');
+		axios.get("http://localhost:3001/api/posts/",{
+			headers: {
+				'Authorization': `Basic ${access_token}`
+			  }
+		})
 			.then(res => {
 				setPosts(res.data)
 			})

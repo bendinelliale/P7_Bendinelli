@@ -1,4 +1,5 @@
-import { useState } from "react";
+import React, { useState, useEffect, useRef } from 'react'
+import axios from 'axios'
 
 const CommentForm = ({
   handleSubmit,
@@ -38,4 +39,3 @@ const CommentForm = ({
 };
 
 export default CommentForm;
-Footer

@@ -1,38 +1,16 @@
-export const getComments = async () => {
-    return [
-      {
-        id: "1",
-        body: "First comment",
-        username: "Jack",
-        userId: "1",
-        parentId: null,
-        createdAt: "2021-08-16T23:00:33.010+02:00",
-      },
-      {
-        id: "2",
-        body: "Second comment",
-        username: "John",
-        userId: "2",
-        parentId: null,
-        createdAt: "2021-08-16T23:00:33.010+02:00",
-      },
-      {
-        id: "3",
-        body: "First comment first child",
-        username: "John",
-        userId: "2",
-        parentId: "1",
-        createdAt: "2021-08-16T23:00:33.010+02:00",
-      },
-      {
-        id: "4",
-        body: "Second comment second child",
-        username: "John",
-        userId: "2",
-        parentId: "2",
-        createdAt: "2021-08-16T23:00:33.010+02:00",
-      },
-    ];
+import axios from "axios";
+const access_token = sessionStorage.getItem('token');
+let config = {
+  
+    headers: {
+      'Authorization': `Bearer ${access_token}`
+      }
+  
+}
+export const getComments = async (id) => {
+    return axios.get('http://localhost:3001/api/comments/'+id,config).then(res=>{
+      return res.data
+    })
   };
   
   export const createComment = async (text, parentId = null) => {

@@ -1,20 +1,43 @@
 import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
+import Comments from '../comments/Comments';
 const helloUser = sessionStorage.getItem('UserName');
 let lastMaxId;
 
+
 function DataFetching() {
 	const [posts, setPosts] = useState ([])
+const deleteMessages =(id, e)=>{
+	const access_token = sessionStorage.getItem('token');
+    axios.delete("http://localhost:3001/api/posts/"+id,{
+		headers: {
+			'Authorization': `Bearer ${access_token}`
+		  }
+	})
+      .then(res => {
+        console.log(res);
+        alert(res.data.message);
+  
+        //const post = posts.filter(item => item.id !== id);
+       // setPosts( post );
+	   updateView()
+      })
+  
+  }
 
 	  // Update max ID view
 	  function updateView() {
-		axios('http://localhost:3001/api/posts/')
-		.then(res => {
-			let array = res.data;
+		const access_token = sessionStorage.getItem('token');
+		axios.get('http://localhost:3001/api/posts/' ,{headers: {
+			'Authorization': `Bearer ${access_token}`
+		  }})
+		
+		.then(resposne => {
+			let array = resposne.data;
 			var res = Math.max.apply(Math,array.map(function(o){return o.id;}))
 			sessionStorage.setItem("maxId", res)
+			setPosts(resposne.data)
 			})
-
 		const userId = sessionStorage.getItem('UserId');
 		const maxId = sessionStorage.getItem('maxId'); 
 		axios
@@ -74,13 +97,14 @@ function DataFetching() {
 
 				{posts.map(post => (
 					<div id="messages" key={post.id}>
-						<p key={post.id}>Author: {post.UserName}</p>
-						<p key={post.title}>Title: {post.title}</p>
-						<p key={post.content}>{post.content}</p>
+						<p >Author: {post.UserName}</p>
+						<p >Title: {post.title}</p>
+						<p >{post.content}</p>
 						<img src={post.imageUrl} max-width='300' alt="" />
-						<button id="delete">Delete</button>
-						<button id="comment">Comments</button>
+						<button id="delete" onClick={()=>deleteMessages(post.id)}>Delete</button>
+						<Comments postId={post.id} />
 					</div>
+					 
 				))}
 			<div id="messages">
 				<a><button className="button is-success" onClick={updateView}>Archive messages</button></a>

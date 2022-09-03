@@ -8,6 +8,7 @@ import Error404 from './components/error404';
 import NewPost from './components/newpost';
 import Archive from './components/archive';
 import { Navigate} from 'react-router-dom';
+import Comments from "./comments/Comments";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -33,6 +34,7 @@ function App() {
     </Router>
   )
 }
+
 
 export default App
 

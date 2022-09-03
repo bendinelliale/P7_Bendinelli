@@ -1,5 +1,5 @@
 html { 
-    background-color: white;
+    background: url(https://images.unsplash.com/photo-1496307940733-1521fcd5629c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2942&q=80) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -210,6 +210,8 @@ button:hover {
   
   .comments-container {
     margin-top: 40px;
+    background-color: white;
+    border-radius: 20px;
   }
   
   .comment-form-title {
@@ -221,20 +223,21 @@ button:hover {
     height: 80px;
     margin-bottom: 8px;
     margin-top: 8px;
-    border: 1px solid rgb(107, 114, 12);
+    border: 1px solid rgb(239, 5, 5);
   }
   
   .comment-form-button {
     font-size: 16px;
     padding: 8px 16px;
-    background: rgb(59, 130, 246);
-    border-radius: 8px;
-    color: white;
+    background: rgb(255, 255, 255);
+    border-radius: 20px;
+    color: rgb(0, 0, 0);
   }
   
   .comment-form-button:hover:enabled {
     cursor: pointer;
-    background: rgb(37, 99, 235);
+    background: linear-gradient(177deg, #f10404, #e6777a, #f2dfdf);
+    color: white;
   }
   
   .comment-form-button:disabled {
@@ -251,13 +254,6 @@ button:hover {
     margin-bottom: 28px;
   }
   
-  .comment-image-container {
-    margin-right: 12px;
-  }
-  
-  .comment-image-container img {
-    border-radius: 50px;
-  }
   
   .comment-right-part {
     width: 100%;
@@ -265,12 +261,13 @@ button:hover {
   
   .comment-content {
     display: flex;
+    margin: 10px;
   }
   
   .comment-author {
     margin-right: 8px;
     font-size: 20px;
-    color: rgb(59, 130, 246);
+    color: rgb(5, 5, 5);
   }
   
   .comment-text {
@@ -283,6 +280,7 @@ button:hover {
     color: rgb(51, 51, 51);
     cursor: pointer;
     margin-top: 8px;
+    margin: 10px;
   }
   
   .comment-action {
@@ -302,10 +300,10 @@ button:hover {
         max-width: 100%;
     }
     .navbar-logo{
-        align-self: center;
+       
           width: 25%;
           height: 25%;
-          margin-left: 540px;
+          
     }
     .navbar-dropdown{
         width: 100%;
@@ -313,7 +311,7 @@ button:hover {
           display: flex;
           flex-direction: column-reverse;
           margin-left: 123px;
-          font-size: 10px;
+          font-size: 15px;
           margin-left: 500px;
     }
 
@@ -344,7 +342,7 @@ button:hover {
 
     #messages{
         width: 100%;
-        flex-direction: column-reverse;
+
         align-items: center;
         margin-left: 140px;
         font-size: 13px;
@@ -352,7 +350,6 @@ button:hover {
 
     #posts{
         width: 100%;
-        flex-direction: column-reverse;
         align-items: center;
         margin-left: 140px;
         font-size: 13px;
@@ -431,8 +428,7 @@ textarea{
     }
 
     #messages{
-        width: 222px;
-        flex-direction: column-reverse;        
+        width: 222px;       
         align-items: center;
         margin-left: 37px;
         font-size: 13px;
@@ -458,7 +454,7 @@ input {
 
 
 img {
-    max-height: 220px;
+    max-height: 170px;
     margin: 0 auto;
 }
 
@@ -476,4 +472,20 @@ textarea{
     margin-right: 50px;
 }
 
+}
+.comment-form-textarea {
+    width: 90%;
+}
+
+.comments-container {
+    margin-right: 10px;
+}
+
+#delete {
+    margin: auto;
+    margin-top: 20px;
+}
+
+.active {
+    margin: auto;
 }

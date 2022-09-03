@@ -49,7 +49,7 @@ function Head(){
         
   <div className="navbar-logo">
     <a className="navbar-item" href="/">
-      <img src={GmLogo} width="200" height="42" />
+      <img src={GmLogo} width="200" height="42" alt='logo'/>
     </a>
   </div>
 </nav>

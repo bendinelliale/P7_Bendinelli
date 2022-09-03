@@ -1,3 +1,5 @@
+import React, { useState, useEffect, useRef } from 'react'
+import axios from 'axios'
 import CommentForm from "./CommentForm";
 
 const Comment = ({
@@ -29,20 +31,17 @@ const Comment = ({
   const createdAt = new Date(comment.createdAt).toLocaleDateString();
   return (
     <div key={comment.id} className="comment">
-      <div className="comment-image-container">
-        <img src="/user-icon.png" />
-      </div>
       <div className="comment-right-part">
         <div className="comment-content">
-          <div className="comment-author">{comment.username}</div>
+          <div className="comment-author">{comment.UserName}</div>
           <div>{createdAt}</div>
         </div>
-        {!isEditing && <div className="comment-text">{comment.body}</div>}
+        {!isEditing && <div className="comment-text">{comment.content}</div>}
         {isEditing && (
           <CommentForm
             submitLabel="Update"
             hasCancelButton
-            initialText={comment.body}
+            initialText={comment.content}
             handleSubmit={(text) => updateComment(text, comment.id)}
             handleCancel={() => {
               setActiveComment(null);
