@@ -12,7 +12,7 @@ import {
 const Comments = ({ commentsUrl, currentUserId , postId }) => {
   const [backendComments, setBackendComments] = useState([]);
   const [activeComment, setActiveComment] = useState(null);
-  const rootComments = backendComments.filter(
+  let rootComments = backendComments.filter(
     (backendComment) => backendComment.postId === null
   );
   const getReplies = (commentId) =>
@@ -22,10 +22,17 @@ const Comments = ({ commentsUrl, currentUserId , postId }) => {
         (a, b) =>
           new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
       );
-  const addComment = (text, parentId) => {
-    createCommentApi(text, parentId).then((comment) => {
-      setBackendComments([comment, ...backendComments]);
+  const addComment = (text) => {
+    createCommentApi(text, postId).then((comment) => {
+      //setBackendComments([comment, ...backendComments]);
+      console.log(comment)
+
       setActiveComment(null);
+      getCommentsApi(postId).then((data) => {
+        console.log('comments',data)
+        setBackendComments(data);
+      });
+      //useEffect()
     });
   };
 
@@ -43,7 +50,7 @@ const Comments = ({ commentsUrl, currentUserId , postId }) => {
   };
   const deleteComment = (commentId) => {
     if (window.confirm("Are you sure you want to remove comment?")) {
-      deleteCommentApi().then(() => {
+      deleteCommentApi(commentId).then(() => {
         const updatedBackendComments = backendComments.filter(
           (backendComment) => backendComment.id !== commentId
         );
@@ -75,6 +82,7 @@ const Comments = ({ commentsUrl, currentUserId , postId }) => {
             deleteComment={deleteComment}
             updateComment={updateComment}
             currentUserId={currentUserId}
+            postId={postId}
           />
         ))}
       </div>

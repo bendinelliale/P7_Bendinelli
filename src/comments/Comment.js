@@ -10,8 +10,9 @@ const Comment = ({
   updateComment,
   deleteComment,
   addComment,
-  parentId = null,
+  parentId= null,
   currentUserId,
+  postId
 }) => {
   const isEditing =
     activeComment &&
@@ -22,9 +23,10 @@ const Comment = ({
     activeComment.id === comment.id &&
     activeComment.type === "replying";
   const fiveMinutes = 300000;
+  const UserName = sessionStorage.getItem('UserName')
   const timePassed = new Date() - new Date(comment.createdAt) > fiveMinutes;
   const canDelete =
-    currentUserId === comment.userId && replies.length === 0 && !timePassed;
+  UserName === comment.UserName && replies.length === 0 && !timePassed;
   const canReply = Boolean(currentUserId);
   const canEdit = currentUserId === comment.userId && !timePassed;
   const replyId = parentId ? parentId : comment.id;
@@ -49,26 +51,7 @@ const Comment = ({
           />
         )}
         <div className="comment-actions">
-          {canReply && (
-            <div
-              className="comment-action"
-              onClick={() =>
-                setActiveComment({ id: comment.id, type: "replying" })
-              }
-            >
-              Reply
-            </div>
-          )}
-          {canEdit && (
-            <div
-              className="comment-action"
-              onClick={() =>
-                setActiveComment({ id: comment.id, type: "editing" })
-              }
-            >
-              Edit
-            </div>
-          )}
+          
           {canDelete && (
             <div
               className="comment-action"

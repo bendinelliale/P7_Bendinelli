@@ -1,5 +1,6 @@
 import axios from "axios";
 const access_token = sessionStorage.getItem('token');
+const helloUser = sessionStorage.getItem('UserName');
 let config = {
   
     headers: {
@@ -14,20 +15,29 @@ export const getComments = async (id) => {
   };
   
   export const createComment = async (text, parentId = null) => {
-    return {
-      id: Math.random().toString(36).substr(2, 9),
-      body: text,
-      parentId,
-      userId: "1",
-      username: "John",
-      createdAt: new Date().toISOString(),
-    };
+    let formData = new FormData
+		
+		
+		formData.append(
+			'UserName', helloUser
+		)
+		formData.append(
+			'title', 'comment'
+		)
+		formData.append(
+			'content', text
+		)
+		formData.append(
+			'postId', parentId
+		)
+    return axios.post('http://localhost:3001/api/comments/',formData,config).then(res=> res.data)
+    
   };
   
   export const updateComment = async (text) => {
     return { text };
   };
   
-  export const deleteComment = async () => {
-    return {};
+  export const deleteComment = async (id) => {
+    return axios.delete('http://localhost:3001/api/comments/'+id,config).then(res=> res.data)
   };
