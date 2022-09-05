@@ -1,13 +1,13 @@
 import React from 'react';
 import '../css/styles.css';
 import axios from 'axios'
-import { Navigate} from 'react-router-dom';
+import { Navigate ,useNavigate} from 'react-router-dom';
 import GmLogo from '../img/gm-icon-left.webp';
 
 
 const access_token = sessionStorage.getItem('token');
 const helloUser = sessionStorage.getItem('UserName');
-
+let navigate
 function logout(){
   sessionStorage.removeItem('token');
   sessionStorage.removeItem('UserId');
@@ -24,7 +24,12 @@ const deleteAccount=()=>{
       'Authorization': `token ${access_token}`
     },
     data: { }
-    });
+    })
+    .then(res=>{
+      alert('user deleted!');
+					navigate('/login')
+})
+    
     sessionStorage.removeItem('token');
    sessionStorage.removeItem('UserId');
    sessionStorage.removeItem('UserName');
@@ -33,6 +38,7 @@ const deleteAccount=()=>{
 }
 
 function Head(){
+   navigate  =  useNavigate ()
     if(!sessionStorage.getItem('token') ){
         
         return <Navigate to={"/login"} />;

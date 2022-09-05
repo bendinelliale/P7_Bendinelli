@@ -2,14 +2,14 @@ import '../css/styles.css';
 import React, { useState } from 'react'
 import axios from "axios";
 import GmLogo from '../img/gm-icon-left.webp';
- 
+import { useNavigate} from 'react-router-dom';
 const Register = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confPassword, setConfPassword] = useState('');
     const [msg, setMsg] = useState('');
- 
+    const navigate  =  useNavigate ()
     const Register = async (e) => {
         e.preventDefault();
         try {
@@ -19,9 +19,12 @@ const Register = () => {
                 password: password,
                 confPassword: confPassword
             
-            });
-            }
-                
+            })
+            .then(res=>{
+                alert('account created!');
+                              navigate('/login')
+            })
+        }     
         catch (error) {
             if (error.response) {
                 setMsg(error.response.data.msg);
