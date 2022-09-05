@@ -17,6 +17,7 @@ function DataFetching() {
 		})
 			.then(res => {
 				setPosts(res.data)
+				
 			})
 			.catch(err => {
 				console.log(err)
