@@ -53,7 +53,9 @@ function PopUpbox() {
 	return (
 		
         <div id="messages">
-
+<div className='postHeader'>
+	
+</div>
 		<div className="post-popup job_post">
 			<div className="post-project">
 				<h3>Create a post</h3>

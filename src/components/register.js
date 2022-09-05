@@ -18,15 +18,17 @@ const Register = () => {
                 UserEmail: email,
                 password: password,
                 confPassword: confPassword
+            
             });
-
-        } catch (error) {
+            }
+                
+        catch (error) {
             if (error.response) {
                 setMsg(error.response.data.msg);
-            }
-            
-        }
+            }}
+        
     }
+    
  
     return (
         <section className="hero is-fullheight is-fullwidth">
